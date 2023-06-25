@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
                   },
                 
                 
-        child:ListView(children: BlocProvider.of<HomeCubit>(context).homePageUsers.map((userDataInstance) =>userListTileBuilder(userDataInstance) ).toList())) ;
+        child:ListView(children: BlocProvider.of<HomeCubit>(context).homePageUsers.map((userDataInstance) =>userListTileBuilder(context,userDataInstance) ).toList())) ;
                 }else{
                   return Center(child: Text('Somthing Wrong hapend when fetching data'));
                 }
