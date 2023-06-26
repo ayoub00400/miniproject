@@ -22,9 +22,12 @@ class LangCubit extends Cubit<LangState> {
   }
 
   changeAppLang(String langCodeUsed){
+    if(defaultLang!=langCodeUsed){
       AppStorage.storageInstance!.setString("lang",langCodeUsed);
       defaultLang=langCodeUsed;
       emit(LangChanged());
+    }
+      
     }
     
   
