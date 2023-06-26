@@ -8,5 +8,9 @@
    "loginfailedcontent":"اسم المستخدم او كلمة المرور خاطئة حاول مجددا",
    "homepagetitle":"قائمة المستخدمين",
    "homepageloadingtext":"جاري البحث",
-   "homepageloeadinfailed":"حصل خطئ اثناء عملية البحق حاول مجددا"
+   "homepageloeadinfailed":"حصل خطئ اثناء عملية البحث حاول مجددا",
+   "homefirstnametxt":"الاسم",
+   "homelasttxt":"اللقب",
+   "homepgonenumber":"رقم الهاتف",
+   "profiletxt":"الحساب"
 }

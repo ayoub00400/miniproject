@@ -8,6 +8,9 @@
    "loginfailedcontent":"Wrong username or password please try again.",
    "homepagetitle":"Users List",
    "homepageloadingtext":"Fetching data",
-   "homepageloeadinfailed":"Somthing Wrong hapend when fetching data"
-
+   "homepageloeadinfailed":"Somthing Wrong hapend when fetching data",
+   "homefirstnametxt":"First Name",
+   "homelasttxt":"Last Name",
+   "homepgonenumber":"Phone Number",
+   "profiletxt":"Profile"
 }

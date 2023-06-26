@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_project_app/shared/internationalisme/cubit/lang_cubit.dart';
 import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
@@ -9,8 +8,10 @@ import '../home/homepage.dart';
 import 'cubit/login_cubit.dart';
 
 class LoginPage extends StatelessWidget {
-  TextEditingController userNameTextFieldCotroller = TextEditingController();
-  TextEditingController userPasswordFieldCotroller = TextEditingController();
+  TextEditingController userNameTextFieldCotroller = TextEditingController(text:"Ayoub004" );
+  TextEditingController userPasswordFieldCotroller = TextEditingController(text: "Ayoub0041");
+
+  LoginPage({super.key});
 
   //const LoginPage({super.key});
 
@@ -23,15 +24,13 @@ class LoginPage extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
-        BlocProvider(
-          create: (context) => ThemeCubit(),
-        )
+        
       ],
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginDone) {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomePage()));
+                MaterialPageRoute(builder: (context) => const HomePage()));
           } else {
             if (state is LoginFailed) {
               showDialog(
@@ -54,15 +53,15 @@ class LoginPage extends StatelessWidget {
                   onChanged: (value) {
                     context.read<ThemeCubit>().changeAppTheme(value);
                   });
-            }),SizedBox(width: 10,),
+            }),const SizedBox(width: 10,),
             BlocBuilder<LangCubit, LangState>(
               builder: (context, state) {
-                return DropdownButton(icon: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                return DropdownButton(icon: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Icon(Icons.language),
-                ), hint:Text('Lang') , items: [
-                  DropdownMenuItem(child: Text('en'), value: 'en'),
-                  DropdownMenuItem(child: Text('ar'), value: 'ar')
+                ), hint:const Text('Lang') , items: const [
+                  DropdownMenuItem(value: 'en', child: Text('en')),
+                  DropdownMenuItem(value: 'ar', child: Text('ar'))
                 ], onChanged: (langCode) {
 
                    BlocProvider.of<LangCubit>(context).changeLang(langCode!);
@@ -73,7 +72,7 @@ class LoginPage extends StatelessWidget {
           body: SafeArea(
               child: Container(
             alignment: AlignmentDirectional.center,
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SingleChildScrollView(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -82,10 +81,10 @@ class LoginPage extends StatelessWidget {
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
                           langDelegate.loginheader,
-                          style: TextStyle(fontSize: 40),
+                          style: const TextStyle(fontSize: 40),
                         )),
                     Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
                           langDelegate.loginphrase,
@@ -93,7 +92,7 @@ class LoginPage extends StatelessWidget {
                               fontSize: 23,
                               color: Colors.grey.withOpacity(.88)),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -105,7 +104,7 @@ class LoginPage extends StatelessWidget {
                           filled: true,
                           fillColor: Colors.blue.withOpacity(.09)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -117,7 +116,7 @@ class LoginPage extends StatelessWidget {
                           filled: true,
                           fillColor: Colors.blue.withOpacity(.09)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     BlocBuilder<LoginCubit, LoginState>(
@@ -134,13 +133,13 @@ class LoginPage extends StatelessWidget {
                                     userPasswordFieldCotroller.text);
                           },
                           child: state is LoginLoading
-                              ? SizedBox(
+                              ? const SizedBox(
                                   height: 15,
                                   width: 15,
                                   child: CircularProgressIndicator(
                                     color: Colors.white,
                                   ))
-                              : Text('Login'));
+                              : const Text('Login'));
                     })
                   ]),
             ),

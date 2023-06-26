@@ -4,25 +4,28 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../shared/componants/componants.dart';
 import 'cubit/home_cubit.dart';
+import 'cubit/home_state.dart';
 
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var langDelegate=AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => HomeCubit()..loadHomePageUsers(),
       child:  Scaffold(
-          appBar: AppBar(title: Text(langDelegate.homepagetitle),actions: []),
+          appBar: AppBar(title: Text(langDelegate.homepagetitle),actions: const []),
           body: SafeArea(child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               if(state is LoadingHomePageUsers ){
-                return  Container(
+                return  SizedBox(
                   width: double.maxFinite,
                   child: Column(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircularProgressIndicator(),
-                      SizedBox(height: 5,),
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 5,),
                       Text(langDelegate. homepageloadingtext )
                     ],
                   ),

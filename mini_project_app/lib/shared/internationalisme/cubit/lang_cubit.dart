@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:intl/locale.dart';
 import 'package:meta/meta.dart';
 
 part 'lang_state.dart';

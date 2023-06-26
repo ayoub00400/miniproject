@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:http/http.dart';
 
@@ -9,6 +8,15 @@ class UsersApiImplimentation implements UsersApi {
   @override
    Future<Response> getAllUsers() async {
     return await get(Uri.parse(apiPath));
+  }
+  
+  @override
+  Future<Response> getUserById(int userId) async{
+     
+    return await get(Uri.parse(apiPath+userId.toString()));
+  
+  
+    
   }
   
   
