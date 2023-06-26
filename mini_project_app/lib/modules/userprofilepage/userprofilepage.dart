@@ -28,11 +28,11 @@ class UserProfilePage extends StatelessWidget {
                   child: BlocBuilder<UserprofileCubit, UserprofileState>(
                     builder: (context, state) {
                       if (state is LoadingUserPageLoading) {
-                        return SafeArea(
+                        return const SafeArea(
                             child: Center(
                           child: CircleAvatar(),
                         ));
-                      } else
+                      } else {
                         return SafeArea(
                           child: ListView(
                             children: [
@@ -49,7 +49,7 @@ class UserProfilePage extends StatelessWidget {
                                   children: [
                                     Text(
                                       "${userData[0].userFullName['firstname'].toString()} ${userData[0].userFullName['lastname'].toString()}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 24.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -85,6 +85,7 @@ class UserProfilePage extends StatelessWidget {
                             ],
                           ),
                         );
+                      }
                     },
                   ),
                 );

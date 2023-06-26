@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 

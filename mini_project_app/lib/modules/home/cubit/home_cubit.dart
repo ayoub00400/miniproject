@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
-import 'home_state.dart';
 
 import '../../../models/usermodel.dart';
 import '../../../shared/remote/homepage/usersapiimplement.dart';
+import 'home_state.dart';
 
 
 
@@ -23,7 +23,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(LoadingHomePageUsersDone());
       
     }).catchError((error){emit(LoadingHomePageUsersFailed());
-    print(error.toString());});
+    });
     
 
   }

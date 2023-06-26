@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_project_app/shared/internationalisme/cubit/lang_cubit.dart';
-import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'package:mini_project_app/shared/internationalisme/cubit/lang_cubit.dart';
+import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
 import '../home/homepage.dart';
 import 'cubit/login_cubit.dart';
 
 class LoginPage extends StatelessWidget {
-  TextEditingController userNameTextFieldCotroller = TextEditingController(text:"Ayoub004" );
-  TextEditingController userPasswordFieldCotroller = TextEditingController(text: "Ayoub0041");
+ final TextEditingController userNameTextFieldCotroller = TextEditingController(text:"Ayoub004" );
+  final TextEditingController userPasswordFieldCotroller = TextEditingController(text: "Ayoub0041");
 
   LoginPage({super.key});
 
-  //const LoginPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
             BlocBuilder<LangCubit, LangState>(
               builder: (context, state) {
                 return DropdownButton(icon: const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
                   child: Icon(Icons.language),
                 ), hint:const Text('Lang') , items: const [
                   DropdownMenuItem(value: 'en', child: Text('en')),

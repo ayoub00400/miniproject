@@ -9,8 +9,8 @@
    "homepagetitle":"قائمة المستخدمين",
    "homepageloadingtext":"جاري البحث",
    "homepageloeadinfailed":"حصل خطئ اثناء عملية البحث حاول مجددا",
-   "homefirstnametxt":"الاسم",
-   "homelasttxt":"اللقب",
-   "homepgonenumber":"رقم الهاتف",
+   "homefirstnametxt":": الاسم",
+   "homelasttxt":": اللقب",
+   "homepgonenumber":": رقم الهاتف",
    "profiletxt":"الحساب"
 }

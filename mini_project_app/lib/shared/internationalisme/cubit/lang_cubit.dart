@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../internalstorage/appstorage.dart';
-
 part 'lang_state.dart';
 
 class LangCubit extends Cubit<LangState> {
@@ -29,13 +28,6 @@ class LangCubit extends Cubit<LangState> {
     }
       
     }
-    
-  
-
-
-
-
-
 
   
 }
