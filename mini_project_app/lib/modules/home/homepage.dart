@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../shared/componants/componants.dart';
 import 'cubit/home_cubit.dart';
 
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var langDelegate=AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => HomeCubit()..loadHomePageUsers(),
       child:  Scaffold(
-          appBar: AppBar(title: Text('Users List '),actions: []),
+          appBar: AppBar(title: Text(langDelegate.homepagetitle),actions: []),
           body: SafeArea(child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               if(state is LoadingHomePageUsers ){
@@ -19,7 +22,8 @@ class HomePage extends StatelessWidget {
                   child: Column(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircularProgressIndicator(),
-                      Text('Fetching data ')
+                      SizedBox(height: 5,),
+                      Text(langDelegate. homepageloadingtext )
                     ],
                   ),
                 );
@@ -33,7 +37,7 @@ class HomePage extends StatelessWidget {
                 
         child:ListView(children: BlocProvider.of<HomeCubit>(context).homePageUsers.map((userDataInstance) =>userListTileBuilder(context,userDataInstance) ).toList())) ;
                 }else{
-                  return Center(child: Text('Somthing Wrong hapend when fetching data'));
+                  return Center(child: Text(langDelegate.homepageloeadinfailed ));
                 }
               }
               

@@ -1,0 +1,13 @@
+{
+   "loginheader":"Login",
+   "loginphrase":"stay connected to catch the news ",
+   "username":"Username:",
+   "password":"Password:",
+   "loginbutton":"Login",
+   "loginfailed":"Login Failed!!",
+   "loginfailedcontent":"Wrong username or password please try again.",
+   "homepagetitle":"Users List",
+   "homepageloadingtext":"Fetching data",
+   "homepageloeadinfailed":"Somthing Wrong hapend when fetching data"
+
+}

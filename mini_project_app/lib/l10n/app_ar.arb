@@ -1,0 +1,12 @@
+{
+   "loginheader":"تسجيل الدخول",
+   "loginphrase":"ابقى متصلا لكي يصلك الجديد ",
+   "username":"اسم المستخدم:",
+   "password":"كلمة المرور:",
+   "loginbutton":"الدخول",
+   "loginfailed":"فشل تسجيل الدخول",
+   "loginfailedcontent":"اسم المستخدم او كلمة المرور خاطئة حاول مجددا",
+   "homepagetitle":"قائمة المستخدمين",
+   "homepageloadingtext":"جاري البحث",
+   "homepageloeadinfailed":"حصل خطئ اثناء عملية البحق حاول مجددا"
+}

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_project_app/shared/internationalisme/cubit/lang_cubit.dart';
+import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../home/homepage.dart';
 import 'cubit/login_cubit.dart';
@@ -8,25 +11,65 @@ import 'cubit/login_cubit.dart';
 class LoginPage extends StatelessWidget {
   TextEditingController userNameTextFieldCotroller = TextEditingController();
   TextEditingController userPasswordFieldCotroller = TextEditingController();
-  
+
   //const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var langDelegate = AppLocalizations.of(context)!;
     FocusScopeNode currentFocus = FocusScope.of(context);
-    return BlocProvider(
-      create: (context) => LoginCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ThemeCubit(),
+        )
+      ],
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
-          if(state is LoginDone){
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomePage()));
-          }else{
-            if(state is LoginFailed){
-              showDialog(context: context, builder:(context)=>AlertDialog(title: Text('Login Failed!!'),content: Text('Wrong username or password please try again.'),) );
+          if (state is LoginDone) {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => HomePage()));
+          } else {
+            if (state is LoginFailed) {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: Text(langDelegate.loginfailed),
+                        content: Text(langDelegate.loginfailedcontent),
+                      ));
             }
           }
         },
         child: Scaffold(
+          appBar: AppBar(actions: [
+            BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+              return Switch(
+                  value: BlocProvider.of<ThemeCubit>(context).themeMode ==
+                          ThemeMode.dark
+                      ? true
+                      : false,
+                  onChanged: (value) {
+                    context.read<ThemeCubit>().changeAppTheme(value);
+                  });
+            }),SizedBox(width: 10,),
+            BlocBuilder<LangCubit, LangState>(
+              builder: (context, state) {
+                return DropdownButton(icon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(Icons.language),
+                ), hint:Text('Lang') , items: [
+                  DropdownMenuItem(child: Text('en'), value: 'en'),
+                  DropdownMenuItem(child: Text('ar'), value: 'ar')
+                ], onChanged: (langCode) {
+
+                   BlocProvider.of<LangCubit>(context).changeLang(langCode!);
+                });
+              },
+            )
+          ]),
           body: SafeArea(
               child: Container(
             alignment: AlignmentDirectional.center,
@@ -38,14 +81,14 @@ class LoginPage extends StatelessWidget {
                     Container(
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
-                          "Login",
+                          langDelegate.loginheader,
                           style: TextStyle(fontSize: 40),
                         )),
                     Container(
                         padding: EdgeInsets.symmetric(vertical: 8),
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
-                          "stay connected to catch the news ",
+                          langDelegate.loginphrase,
                           style: TextStyle(
                               fontSize: 23,
                               color: Colors.grey.withOpacity(.88)),
@@ -56,7 +99,7 @@ class LoginPage extends StatelessWidget {
                     TextFormField(
                       controller: userNameTextFieldCotroller,
                       decoration: InputDecoration(
-                          label: Text('Username:'),
+                          label: Text(langDelegate.username),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)),
                           filled: true,
@@ -68,7 +111,7 @@ class LoginPage extends StatelessWidget {
                     TextFormField(
                       controller: userPasswordFieldCotroller,
                       decoration: InputDecoration(
-                          label: Text('Password:'),
+                          label: Text(langDelegate.password),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)),
                           filled: true,
@@ -77,27 +120,29 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                  BlocBuilder<LoginCubit, LoginState>(
-                          builder: (context, state) {
-                            return   ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                        onPressed: () {
-                          currentFocus.unfocus();
-                            BlocProvider.of<LoginCubit>(context).authanticateUser(userNameTextFieldCotroller.text,userPasswordFieldCotroller.text );
-                        },
-                        child: 
-                            state is LoginLoading?
-                              SizedBox(height: 15,width: 15, child: CircularProgressIndicator(color: Colors.white,)):
-                            
-                               Text('Login')
-                            
-                          
-                            
-                   
-                        );
-  })]),
+                    BlocBuilder<LoginCubit, LoginState>(
+                        builder: (context, state) {
+                      return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20))),
+                          onPressed: () {
+                            currentFocus.unfocus();
+                            BlocProvider.of<LoginCubit>(context)
+                                .authanticateUser(
+                                    userNameTextFieldCotroller.text,
+                                    userPasswordFieldCotroller.text);
+                          },
+                          child: state is LoginLoading
+                              ? SizedBox(
+                                  height: 15,
+                                  width: 15,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ))
+                              : Text('Login'));
+                    })
+                  ]),
             ),
           )),
         ),

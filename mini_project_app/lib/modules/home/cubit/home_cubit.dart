@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'dart:convert';
+
 import '../../../models/usermodel.dart';
 import '../../../shared/remote/homepage/usersapiimplement.dart';
 
 part 'home_state.dart';
+
 
 class HomeCubit extends Cubit<HomeState> {
   List<dynamic> homePageUsers=[];
