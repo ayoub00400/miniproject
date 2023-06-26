@@ -46,8 +46,7 @@ class LoginPage extends StatelessWidget {
           appBar: AppBar(actions: [
             BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
               return Switch(
-                  value: BlocProvider.of<ThemeCubit>(context).themeMode ==
-                          ThemeMode.dark
+                  value: BlocProvider.of<ThemeCubit>(context).darkMode
                       ? true
                       : false,
                   onChanged: (value) {
@@ -64,7 +63,7 @@ class LoginPage extends StatelessWidget {
                   DropdownMenuItem(value: 'ar', child: Text('ar'))
                 ], onChanged: (langCode) {
 
-                   BlocProvider.of<LangCubit>(context).changeLang(langCode!);
+                   BlocProvider.of<LangCubit>(context).changeAppLang(langCode!);
                 });
               },
             )

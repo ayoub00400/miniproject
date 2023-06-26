@@ -1,13 +1,38 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../internalstorage/appstorage.dart';
+
 part 'lang_state.dart';
 
 class LangCubit extends Cubit<LangState> {
   String defaultLang= 'ar';
   LangCubit() : super(LangInitial());
-  changeLang(String lanfCode){
-    defaultLang=lanfCode;
-    emit(LangChanged());
+ 
+
+
+  initLang(){
+    String ? checkLang= AppStorage.storageInstance!.getString('lang');
+    if(checkLang != null){
+      defaultLang=checkLang;
+      
+    }else{
+      defaultLang="ar";
+    }
   }
+
+  changeAppLang(String langCodeUsed){
+      AppStorage.storageInstance!.setString("lang",langCodeUsed);
+      defaultLang=langCodeUsed;
+      emit(LangChanged());
+    }
+    
+  
+
+
+
+
+
+
+  
 }
