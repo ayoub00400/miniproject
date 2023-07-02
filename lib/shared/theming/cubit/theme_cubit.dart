@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'package:mini_project_app/shared/internalstorage/appstorage.dart';
+import 'package:mini_project_app/shared/internal_storage/app_storage.dart';
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {

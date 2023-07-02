@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:mini_project_app/modules/login/loginpage.dart';
-import 'package:mini_project_app/shared/internalstorage/appstorage.dart';
-import 'package:mini_project_app/shared/internationalisme/cubit/lang_cubit.dart';
+
+import 'package:mini_project_app/shared/internal_storage/app_storage.dart';
+
+import 'package:mini_project_app/shared/localisation/cubit/lang_cubit.dart';
 import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
+
+import 'modules/login_page/login_page.dart';
 
 
 Future<void> main() async{

@@ -1,14 +1,22 @@
+
 import 'package:flutter/material.dart';
+
+
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' as app_localisation;
+import 'package:mini_project_app/models/user.dart';
 
 
-import 'package:mini_project_app/models/usermodel.dart';
-import '../../modules/userprofilepage/userprofilepage.dart';
+class UserCard extends StatelessWidget {
+  final UserModel userData;
+     late  Widget routeToPage;
+   UserCard({super.key, required this.userData, required this.routeToPage});
 
-Widget userListTileBuilder(BuildContext context,UserModel userData) {
-  return GestureDetector(
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
     onTap: (){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const UserProfilePage(),settings: RouteSettings( arguments:[userData])));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>routeToPage,settings: RouteSettings( arguments:[userData])));
     },
     child: Container(
       clipBehavior: Clip.antiAlias,
@@ -32,11 +40,11 @@ Widget userListTileBuilder(BuildContext context,UserModel userData) {
                       Row(
                         children: [
                            Text( app_localisation.AppLocalizations.of(context)!.homefirstnametxt),
-                          Text(userData.userFullName['firstname'],style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                          Text(userData.firstName,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
                         ],
                       ),const SizedBox(height: 20), Row(children: [
                            Text(app_localisation.AppLocalizations.of(context)!.homelasttxt),
-                          Text(userData.userFullName['lastname'],style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                          Text(userData.LastName,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
                         ],),
                         const SizedBox(height: 20), Row(children: [
                            Text(app_localisation.AppLocalizations.of(context)!.homepgonenumber),
@@ -48,4 +56,5 @@ Widget userListTileBuilder(BuildContext context,UserModel userData) {
       ]),
     ),
   );
+  }
 }

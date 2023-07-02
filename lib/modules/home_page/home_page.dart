@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mini_project_app/modules/home_page/widgets/user_card.dart';
+import 'package:mini_project_app/modules/user_profile_page/user_profile_page.dart';
 
-import '../../shared/componants/componants.dart';
+
 import 'cubit/home_cubit.dart';
 import 'cubit/home_state.dart';
 
@@ -38,7 +40,7 @@ class HomePage extends StatelessWidget {
                   },
                 
                 
-        child:ListView(children: BlocProvider.of<HomeCubit>(context).homePageUsers.map((userDataInstance) =>userListTileBuilder(context,userDataInstance) ).toList())) ;
+        child:ListView(children: BlocProvider.of<HomeCubit>(context).homePageUsers.map((userDataInstance) =>UserCard(userData:userDataInstance,routeToPage: UserProfilePage(),) ).toList())) ;
                 }else{
                   return Center(child: Text(langDelegate.homepageloeadinfailed ));
                 }

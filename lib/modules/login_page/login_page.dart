@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mini_project_app/modules/login_page/widgets/input_field.dart';
 
-import 'package:mini_project_app/shared/internationalisme/cubit/lang_cubit.dart';
+import 'package:mini_project_app/shared/localisation/cubit/lang_cubit.dart';
 import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
-import '../home/homepage.dart';
+import '../home_page/home_page.dart';
 import 'cubit/login_cubit.dart';
 
 class LoginPage extends StatelessWidget {
@@ -94,26 +95,21 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      controller: userNameTextFieldCotroller,
-                      decoration: InputDecoration(
-                          label: Text(langDelegate.username),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          filled: true,
-                          fillColor: Colors.blue.withOpacity(.09)),
+                     InputFieldWidget(
+                      controller: userNameTextFieldCotroller,labaltxt: 
+                     
+                           langDelegate.username
+                          
                     ),
+                   
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      controller: userPasswordFieldCotroller,
-                      decoration: InputDecoration(
-                          label: Text(langDelegate.password),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          filled: true,
-                          fillColor: Colors.blue.withOpacity(.09)),
+                    InputFieldWidget(
+                      controller: userPasswordFieldCotroller,labaltxt: 
+                     
+                           langDelegate.password
+                          
                     ),
                     const SizedBox(
                       height: 20,

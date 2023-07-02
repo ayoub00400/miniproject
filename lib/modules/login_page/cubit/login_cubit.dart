@@ -11,10 +11,10 @@ class LoginCubit extends Cubit<LoginState> {
   authanticateUser(String userName,String userPassword){
     
     emit(LoginLoading());
-    Future.delayed(const Duration(seconds: 2) ,(() {
+    Future.delayed(const Duration(seconds: 1) ,(() {
       
     if(userName==userNameFake&&userPassword==userPasswordFake){
-      Future.delayed(const Duration(seconds: 5),() {
+      Future.delayed(const Duration(seconds: 1),() {
       emit(LoginDone());
     },);
     }else{

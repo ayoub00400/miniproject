@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:mini_project_app/models/usermodel.dart';
-import 'package:mini_project_app/modules/userprofilepage/cubit/userprofile_cubit.dart';
+import 'package:mini_project_app/models/user.dart';
+import 'package:mini_project_app/modules/user_profile_page/cubit/userprofile_cubit.dart';
+
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({super.key});
@@ -48,7 +49,7 @@ class UserProfilePage extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Text(
-                                      "${userData[0].userFullName['firstname'].toString()} ${userData[0].userFullName['lastname'].toString()}",
+                                      "${userData[0].firstName.toString()} ${userData[0].LastName.toString()}",
                                       style: const TextStyle(
                                         fontSize: 24.0,
                                         fontWeight: FontWeight.bold,
