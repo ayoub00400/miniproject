@@ -24,8 +24,8 @@ Widget userListTileBuilder(BuildContext context,UserModel userData) {
             width: 70,
               child: CircleAvatar(
                 backgroundImage: 
-                     NetworkImage(
-                        'https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg')),
+                     AssetImage(
+                        'assets/imgs/userprofile.jpg')),
               ),
             ),
                     Expanded(child: Container( padding: const EdgeInsets.symmetric(horizontal: 10),child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
