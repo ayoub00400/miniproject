@@ -1,16 +1,16 @@
-class UserModel {
+class User {
   int userId;
   String phoneNumber;
   String firstName;
-  String LastName;
+  String lastName;
 
-  UserModel(this.phoneNumber, this.firstName,this.LastName, this.userId);
+  User(this.phoneNumber, this.firstName, this.lastName, this.userId);
 
-  factory UserModel.fromJson(Map<String, dynamic> userData) {
-    return UserModel(
+  factory User.fromJson(Map<String, dynamic> userData) {
+    return User(
       userData['phone'],
-      userData['name']["firstname"],
-      userData['name']["lastname"],
+      userData['name']['firstname'],
+      userData['name']['lastname'],
       userData['id'],
     );
   }

@@ -1,16 +1,16 @@
 {
-   "loginheader":"تسجيل الدخول",
-   "loginphrase":"ابقى متصلا لكي يصلك الجديد ",
+   "loginHeader":"تسجيل الدخول",
+   "loginPhrase":"ابقى متصلا لكي يصلك الجديد ",
    "username":"اسم المستخدم:",
    "password":"كلمة المرور:",
-   "loginbutton":"الدخول",
-   "loginfailed":"فشل تسجيل الدخول",
-   "loginfailedcontent":"اسم المستخدم او كلمة المرور خاطئة حاول مجددا",
-   "homepagetitle":"قائمة المستخدمين",
-   "homepageloadingtext":"جاري البحث",
-   "homepageloeadinfailed":"حصل خطئ اثناء عملية البحث حاول مجددا",
-   "homefirstnametxt":": الاسم",
-   "homelasttxt":": اللقب",
-   "homepgonenumber":": رقم الهاتف",
-   "profiletxt":"الحساب"
+   "loginButton":"الدخول",
+   "loginFailed":"فشل تسجيل الدخول",
+   "loginFailedContent":"اسم المستخدم او كلمة المرور خاطئة حاول مجددا",
+   "homePageTitle":"قائمة المستخدمين",
+   "homePageLoadingText":"جاري البحث",
+   "homePageLoadingFailed":"حصل خطئ اثناء عملية البحث حاول مجددا",
+   "homeFirstNameTxt":": الاسم",
+   "homeLastTxt":": اللقب",
+   "homePagePhoneNumber":": رقم الهاتف",
+   "profileTxt":"الحساب"
 }

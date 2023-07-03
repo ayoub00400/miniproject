@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:mini_project_app/modules/login_page/widgets/input_field.dart';
 
-import 'package:mini_project_app/shared/localisation/cubit/lang_cubit.dart';
-import 'package:mini_project_app/shared/theming/cubit/theme_cubit.dart';
+import '../../shared/localization/cubit/lang_cubit.dart';
+import '../../shared/theming/cubit/theme_cubit.dart';
+import '../../shared/utils/extensions/app_localization_context.dart';
 import '../home_page/home_page.dart';
 import 'cubit/login_cubit.dart';
+import 'cubit/login_state.dart';
+import 'widgets/input_field.dart';
 
 class LoginPage extends StatelessWidget {
- final TextEditingController userNameTextFieldCotroller = TextEditingController(text:"Ayoub004" );
-  final TextEditingController userPasswordFieldCotroller = TextEditingController(text: "Ayoub0041");
+  final TextEditingController userNameTextFieldController =
+      TextEditingController(text: 'Ayoub004');
+  final TextEditingController userPasswordFieldController =
+      TextEditingController(text: 'Ayoub0041');
 
   LoginPage({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
-    var langDelegate = AppLocalizations.of(context)!;
     FocusScopeNode currentFocus = FocusScope.of(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
-        
       ],
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
@@ -37,8 +36,8 @@ class LoginPage extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                        title: Text(langDelegate.loginfailed),
-                        content: Text(langDelegate.loginfailedcontent),
+                        title: Text(context.loc.loginFailed),
+                        content: Text(context.loc.loginFailedContent),
                       ));
             }
           }
@@ -53,19 +52,26 @@ class LoginPage extends StatelessWidget {
                   onChanged: (value) {
                     context.read<ThemeCubit>().changeAppTheme(value);
                   });
-            }),const SizedBox(width: 10,),
+            }),
+            const SizedBox(
+              width: 10,
+            ),
             BlocBuilder<LangCubit, LangState>(
               builder: (context, state) {
-                return DropdownButton(icon: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: Icon(Icons.language),
-                ), hint:const Text('Lang') , items: const [
-                  DropdownMenuItem(value: 'en', child: Text('en')),
-                  DropdownMenuItem(value: 'ar', child: Text('ar'))
-                ], onChanged: (langCode) {
-
-                   BlocProvider.of<LangCubit>(context).changeAppLang(langCode!);
-                });
+                return DropdownButton(
+                    icon: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(Icons.language),
+                    ),
+                    hint: const Text('Lang'),
+                    items: const [
+                      DropdownMenuItem(value: 'en', child: Text('en')),
+                      DropdownMenuItem(value: 'ar', child: Text('ar'))
+                    ],
+                    onChanged: (langCode) {
+                      BlocProvider.of<LangCubit>(context)
+                          .changeAppLang(langCode!);
+                    });
               },
             )
           ]),
@@ -80,14 +86,14 @@ class LoginPage extends StatelessWidget {
                     Container(
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
-                          langDelegate.loginheader,
+                          context.loc.loginHeader,
                           style: const TextStyle(fontSize: 40),
                         )),
                     Container(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
-                          langDelegate.loginphrase,
+                          context.loc.loginPhrase,
                           style: TextStyle(
                               fontSize: 23,
                               color: Colors.grey.withOpacity(.88)),
@@ -95,22 +101,15 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                     InputFieldWidget(
-                      controller: userNameTextFieldCotroller,labaltxt: 
-                     
-                           langDelegate.username
-                          
-                    ),
-                   
+                    InputFieldWidget(
+                        controller: userNameTextFieldController,
+                        label: context.loc.username),
                     const SizedBox(
                       height: 20,
                     ),
                     InputFieldWidget(
-                      controller: userPasswordFieldCotroller,labaltxt: 
-                     
-                           langDelegate.password
-                          
-                    ),
+                        controller: userPasswordFieldController,
+                        label: context.loc.password),
                     const SizedBox(
                       height: 20,
                     ),
@@ -123,9 +122,9 @@ class LoginPage extends StatelessWidget {
                           onPressed: () {
                             currentFocus.unfocus();
                             BlocProvider.of<LoginCubit>(context)
-                                .authanticateUser(
-                                    userNameTextFieldCotroller.text,
-                                    userPasswordFieldCotroller.text);
+                                .authenticateUser(
+                                    userNameTextFieldController.text,
+                                    userPasswordFieldController.text);
                           },
                           child: state is LoginLoading
                               ? const SizedBox(

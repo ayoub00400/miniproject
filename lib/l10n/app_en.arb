@@ -1,16 +1,16 @@
 {
-   "loginheader":"Login",
-   "loginphrase":"stay connected to catch the news ",
+   "loginHeader":"Login",
+   "loginPhrase":"stay connected to catch the news ",
    "username":"Username:",
    "password":"Password:",
-   "loginbutton":"Login",
-   "loginfailed":"Login Failed!!",
-   "loginfailedcontent":"Wrong username or password please try again.",
-   "homepagetitle":"Users List",
-   "homepageloadingtext":"Fetching data",
-   "homepageloeadinfailed":"Somthing Wrong hapend when fetching data",
-   "homefirstnametxt":"First Name :",
-   "homelasttxt":"Last Name :",
-   "homepgonenumber":"Phone Number : ",
-   "profiletxt":"Profile"
+   "loginButton":"Login",
+   "loginFailed":"Login Failed!!",
+   "loginFailedContent":"Wrong username or password please try again.",
+   "homePageTitle":"Users List",
+   "homePageLoadingText":"Fetching data",
+   "homePageLoadingFailed":"Somthing Wrong hapend when fetching data",
+   "homeFirstNameTxt":"First Name :",
+   "homeLastTxt":"Last Name :",
+   "homePagePhoneNumber":"Phone Number : ",
+   "profileTxt":"Profile"
 }

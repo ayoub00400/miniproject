@@ -1,8 +1,7 @@
+import '../../../models/user.dart';
 
-import 'package:mini_project_app/models/user.dart';
-abstract class IUserRepository{
+abstract class IUserRepository {
+  Future<List<User>> getAllUsers();
 
-  Future <List<UserModel>>  getAllUsers();
-  Future <UserModel>  getUserById(int userId);
-
+  Future<User> getUserById(int userId);
 }

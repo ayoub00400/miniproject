@@ -1,9 +1,5 @@
 class Urls {
-  
-    static String baseUrl ="https://fakestoreapi.com";
+  static String baseUrl = 'https://fakestoreapi.com';
 
-    static String users = baseUrl + '/users';
-
-    
-
+  static String users = '$baseUrl/users';
 }
