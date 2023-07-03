@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../internal_storage/app_storage.dart';
+import '../../../utils/app_storage.dart';
 
 part 'lang_state.dart';
 
@@ -9,7 +9,7 @@ class LangCubit extends Cubit<LangState> {
   LangCubit() : super(LangInitial());
 
   void initLang() {
-    String? checkLang = AppStorage.storageInstance!.getString('lang');
+    String? checkLang = Prefs.getString(SPKeys.Language);
     if (checkLang != null) {
       defaultLang = checkLang;
     } else {
@@ -19,7 +19,7 @@ class LangCubit extends Cubit<LangState> {
 
   void changeAppLang(String langCodeUsed) {
     if (defaultLang != langCodeUsed) {
-      AppStorage.storageInstance!.setString('lang', langCodeUsed);
+      Prefs.setString('lang', langCodeUsed);
       defaultLang = langCodeUsed;
       emit(LangChanged());
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/constants.dart';
+import '../../utils/constants.dart';
 
 var darkTheme = ThemeData(
   primaryColor: Constants.primaryColor,

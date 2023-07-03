@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../models/user.dart';
+import '../../../models/user.dart';
 import 'cubit/user_profile_cubit.dart';
 import 'cubit/user_profile_state.dart';
 
@@ -11,8 +11,7 @@ class UserProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<User> userData =
-        ModalRoute.of(context)!.settings.arguments as List<User>;
+    User userData = ModalRoute.of(context)!.settings.arguments as User;
     return BlocProvider(
         create: (context) => UserProfileCubit(),
         child: Scaffold(
@@ -24,7 +23,7 @@ class UserProfilePage extends StatelessWidget {
                 return RefreshIndicator(
                   onRefresh: () async {
                     BlocProvider.of<UserProfileCubit>(context)
-                        .getUserById(userData[0].userId);
+                        .getUserById(userData.userId);
                   },
                   child: BlocBuilder<UserProfileCubit, UserProfileState>(
                     builder: (context, state) {
@@ -49,7 +48,7 @@ class UserProfilePage extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Text(
-                                      '${userData[0].firstName.toString()} ${userData[0].lastName.toString()}',
+                                      '${userData.firstName.toString()} ${userData.lastName.toString()}',
                                       style: const TextStyle(
                                         fontSize: 24.0,
                                         fontWeight: FontWeight.bold,

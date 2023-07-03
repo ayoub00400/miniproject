@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart'
     as app_localization;
 
-import '../../../models/user.dart';
+import '../../../../models/user.dart';
+import '../../../../utils/constants.dart';
 
 class UserCard extends StatelessWidget {
   final User userData;
@@ -36,8 +37,8 @@ class UserCard extends StatelessWidget {
             child: SizedBox(
               height: 70,
               width: 70,
-              child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/userprofile.jpg')),
+              child:
+                  CircleAvatar(backgroundImage: AssetImage(AppAssets.userIcon)),
             ),
           ),
           Expanded(

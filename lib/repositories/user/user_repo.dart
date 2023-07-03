@@ -1,4 +1,4 @@
-import '../../../models/user.dart';
+import '../../models/user.dart';
 
 abstract class IUserRepository {
   Future<List<User>> getAllUsers();

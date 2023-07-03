@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../internal_storage/app_storage.dart';
+import '../../../utils/app_storage.dart';
 
 part 'theme_state.dart';
 
@@ -9,7 +9,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   bool darkMode = false;
   ThemeCubit() : super(ThemeInitial());
   void initTheme() {
-    bool? checkTheme = AppStorage.storageInstance!.getBool('theme');
+    bool? checkTheme = Prefs.getBool('theme');
     if (checkTheme != null) {
       darkMode = checkTheme;
     } else {
@@ -19,10 +19,10 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   void changeAppTheme(bool isDark) {
     if (isDark) {
-      AppStorage.storageInstance!.setBool('theme', true);
+      Prefs.setBool('theme', true);
       darkMode = true;
     } else {
-      AppStorage.storageInstance!.setBool('theme', false);
+      Prefs.setBool('theme', false);
       darkMode = false;
     }
     emit(ThemeChanged());

@@ -51,10 +51,10 @@ class HomePage extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const UserProfilePage(),
-                                  settings: RouteSettings(arguments: [
-                                    BlocProvider.of<HomeCubit>(context)
-                                        .homePageUsers[index]
-                                  ])));
+                                  settings: RouteSettings(
+                                      arguments:
+                                          BlocProvider.of<HomeCubit>(context)
+                                              .homePageUsers[index])));
                             },
                           );
                         }));

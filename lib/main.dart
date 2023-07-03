@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'modules/login_page/login_page.dart';
-import 'shared/internal_storage/app_storage.dart';
-import 'shared/localization/cubit/lang_cubit.dart';
-import 'shared/theming/cubit/theme_cubit.dart';
+import 'config/language/cubit/lang_cubit.dart';
+import 'config/theme/cubit/theme_cubit.dart';
+import 'view/screens/login_page/login_page.dart';
+import 'utils/app_storage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppStorage.initStorageInstance();
+  await Prefs.init();
   runApp(const MyApp());
 }
 

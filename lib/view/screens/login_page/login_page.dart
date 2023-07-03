@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../shared/localization/cubit/lang_cubit.dart';
-import '../../shared/theming/cubit/theme_cubit.dart';
-import '../../shared/utils/extensions/app_localization_context.dart';
+import '../../../config/language/cubit/lang_cubit.dart';
+import '../../../config/theme/cubit/theme_cubit.dart';
+import '../../../utils/extensions/app_localization_context.dart';
 import '../home_page/home_page.dart';
 import 'cubit/login_cubit.dart';
 import 'cubit/login_state.dart';
