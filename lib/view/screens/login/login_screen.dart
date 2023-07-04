@@ -79,9 +79,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 InputFieldWidget(
                   controller: userNameTextFieldController,
                   label: 'username'.tr,
@@ -93,9 +91,7 @@ class LoginPage extends StatelessWidget {
                   controller: userPasswordFieldController,
                   label: 'password'.tr,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 GetBuilder<LoginController>(
                   builder: (loginController) {
                     return ElevatedButton(
@@ -106,7 +102,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       onPressed: () {
                         currentFocus.unfocus();
-                        loginController.authenticateUser(
+                        loginController.login(
                           userNameTextFieldController.text,
                           userPasswordFieldController.text,
                         );

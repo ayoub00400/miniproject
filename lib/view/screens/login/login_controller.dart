@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 
-import '../home_screen/home_screen.dart';
+import '../home/home_screen.dart';
 
 class LoginController extends GetxController {
   String userNameFake = 'Ayoub004';
   String userPasswordFake = 'Ayoub0041';
+
   Rx<bool> isLoading = false.obs;
 
-  void authenticateUser(String userName, String userPassword) {
+  void login(String userName, String userPassword) {
     isLoading.value = true;
     Future.delayed(
       const Duration(seconds: 1),
@@ -18,7 +19,7 @@ class LoginController extends GetxController {
             () {
               isLoading.value = false;
               update();
-              Get.to(const HomeScreen());
+              Get.to(() => const HomeScreen());
             },
           );
         } else {

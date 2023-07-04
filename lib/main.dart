@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'config/language/localization_service.dart';
 import 'config/theme/theme_controller.dart';
 import 'utils/app_storage.dart';
-import 'view/screens/login_screen/login_screen.dart';
+import 'view/screens/login/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
