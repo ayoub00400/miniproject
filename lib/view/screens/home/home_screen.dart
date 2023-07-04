@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../user_profile_screen/user_profile_screen.dart';
+import '../user_profile/user_profile_screen.dart';
 import 'home_controller.dart';
 import 'widgets/user_card.dart';
 
@@ -26,13 +26,9 @@ class HomeScreen extends StatelessWidget {
                 return UserCard(
                   userData: users[index],
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const UserProfilePage(),
-                        settings: RouteSettings(
-                          arguments: users[index],
-                        ),
-                      ),
+                    Get.to(
+                      () => const UserProfilePage(),
+                      arguments: users[index],
                     );
                   },
                 );
@@ -41,11 +37,9 @@ class HomeScreen extends StatelessWidget {
             onLoading: const Center(
               child: CircularProgressIndicator(),
             ),
-            onError: (error) => Stack(
+            onError: (error) => ListView(
               children: [
-                ListView(
-                  children: const [],
-                ),
+                SizedBox(height: Get.height * 0.4),
                 Center(
                   child: Text(error!),
                 )
