@@ -14,7 +14,7 @@ class InputFieldWidget extends StatelessWidget {
           label: Text(label),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
           filled: true,
-          fillColor: Colors.blue.withOpacity(.09)),
+          fillColor: Colors.blue.withOpacity(.09),),
     );
   }
 }
