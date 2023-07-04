@@ -16,24 +16,25 @@ class UserProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('profileTxt'.tr),
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          userProfileController.getUserById();
-        },
-        child: userProfileController.obx(
-          (state) {
-            if (state.isBlank) {
-              return UserProfileBody(
-                userData: userProfileController.userData!,
-              );
-            } else {
-              return UserProfileBody(
-                userData: userProfileController.userData!,
-              );
-            }
+      body: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () async {
+            userProfileController.getUserById();
           },
-          onError: (error) => Center(child: Text(error!)),
-          onLoading: const Center(child: CircularProgressIndicator()),
+          child: userProfileController.obx(
+            (state) {
+              return UserProfileBody(
+                userData: userProfileController.userData,
+              );
+            },
+            onError: (error) => ListView(
+              children: [
+                SizedBox(height: Get.height * .4),
+                Center(child: Text(error!))
+              ],
+            ),
+            onLoading: const Center(child: CircularProgressIndicator()),
+          ),
         ),
       ),
     );
