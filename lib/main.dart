@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:mini_project_app/config/theme/theming.dart';
 
 import 'config/language/localization_service.dart';
 import 'config/theme/theme_controller.dart';
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
       themeMode: Get.find<ThemeController>().darkMode.value
           ? ThemeMode.dark
           : ThemeMode.light,
-      theme: ThemeData.light(),
+      theme: ThemeManager.lightTheme,
+      darkTheme: ThemeManager.darkTheme,
       translations: LocalizationService(),
-      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
