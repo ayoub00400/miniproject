@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../../models/user.dart';
+import '../../../../utils/url_launcher.dart';
 
 class UserProfileBody extends StatelessWidget {
   final User userData;
@@ -21,7 +21,7 @@ class UserProfileBody extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                '${userData.firstName.toString()} ${userData.lastName.toString()}',
+                '${userData.firstName} ${userData.lastName}',
                 style: const TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -42,15 +42,31 @@ class UserProfileBody extends StatelessWidget {
           children: [
             IconButton(
               icon: const Icon(Icons.email),
-              onPressed: () {},
+              onPressed: () {
+                UrlLuncher.launch(
+                  scheme: 'mailto',
+                  path: 'John.Doe@example.com',
+                  queryParams: {'subject': 'Example'},
+                );
+              },
             ),
             IconButton(
               icon: const Icon(Icons.phone),
-              onPressed: () {},
+              onPressed: () {
+                UrlLuncher.launch(
+                  scheme: 'tel',
+                  path: userData.phoneNumber,
+                );
+              },
             ),
             IconButton(
               icon: const Icon(Icons.message),
-              onPressed: () {},
+              onPressed: () {
+                UrlLuncher.launch(
+                  scheme: 'sms',
+                  path: userData.phoneNumber,
+                );
+              },
             ),
           ],
         ),

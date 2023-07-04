@@ -5,16 +5,24 @@ import '../../../repositories/user/user_repo_imp.dart';
 
 class UserProfileController extends GetxController with StateMixin {
   User? userData;
+  UserRepository userRepository = UserRepository();
 
-  void getUserById(int userId) {
+  Future<void> getUserById() async {
     try {
       change(userData, status: RxStatus.loading());
-      UserRepository().getUserById(userId).then((data) {
-        userData = data;
-        change(userData, status: RxStatus.success());
-      });
+
+      userData = await userRepository.getUserById(userData!.userId);
+
+      change(userData, status: RxStatus.success());
     } catch (e) {
       change(null, status: RxStatus.error('error happened here'));
     }
+    update();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    userData = Get.arguments;
   }
 }
