@@ -6,12 +6,6 @@ import '../../utils/app_storage.dart';
 class ThemeController extends GetxController {
   Rx<bool> darkMode = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    initTheme();
-  }
-
   void initTheme() {
     bool? checkTheme = Prefs.getBool('theme');
     if (checkTheme != null) {
@@ -32,5 +26,11 @@ class ThemeController extends GetxController {
       Get.changeThemeMode(ThemeMode.light);
       update();
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    initTheme();
   }
 }
