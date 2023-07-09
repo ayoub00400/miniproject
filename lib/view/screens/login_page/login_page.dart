@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mini_project_app/view/screens/home_page/home_page.dart';
+import 'package:mini_project_app/view/screens/login_page/login_provider.dart';
 
-import '../../../config/language/cubit/lang_cubit.dart';
-import '../../../config/theme/cubit/theme_cubit.dart';
+import '../../../config/language/providers/lang_provider.dart';
+import '../../../config/theme/theme_provider.dart';
 import '../../../utils/extensions/app_localization_context.dart';
-import '../home_page/home_page.dart';
-import 'cubit/login_cubit.dart';
-import 'cubit/login_state.dart';
 import 'widgets/input_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   final TextEditingController userNameTextFieldController =
       TextEditingController(text: 'Ayoub004');
   final TextEditingController userPasswordFieldController =
@@ -18,71 +17,48 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     FocusScopeNode currentFocus = FocusScope.of(context);
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => LoginCubit(),
-        ),
-      ],
-      child: BlocListener<LoginCubit, LoginState>(
-        listener: (context, state) {
-          if (state is LoginDone) {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const HomePage()));
-          } else {
-            if (state is LoginFailed) {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: Text(context.loc.loginFailed),
-                        content: Text(context.loc.loginFailedContent),
-                      ));
-            }
-          }
-        },
-        child: Scaffold(
-          appBar: AppBar(actions: [
-            BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
-              return Switch(
-                  value: BlocProvider.of<ThemeCubit>(context).darkMode
-                      ? true
-                      : false,
-                  onChanged: (value) {
-                    context.read<ThemeCubit>().changeAppTheme(value);
-                  });
-            }),
-            const SizedBox(
-              width: 10,
-            ),
-            BlocBuilder<LangCubit, LangState>(
-              builder: (context, state) {
-                return DropdownButton(
-                    icon: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Icon(Icons.language),
-                    ),
-                    hint: const Text('Lang'),
-                    items: const [
-                      DropdownMenuItem(value: 'en', child: Text('en')),
-                      DropdownMenuItem(value: 'ar', child: Text('ar'))
-                    ],
-                    onChanged: (langCode) {
-                      BlocProvider.of<LangCubit>(context)
-                          .changeAppLang(langCode!);
-                    });
-              },
-            )
-          ]),
-          body: SafeArea(
-              child: Container(
-            alignment: AlignmentDirectional.center,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: SingleChildScrollView(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+    ref.listen(loginProvider, (previous, next) {
+      print(next.whenData((value) {
+        if (value == true) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => HomePage()));
+        }
+      }));
+    });
+    return Scaffold(
+        appBar: AppBar(actions: [
+          Switch(
+              value: ref.watch(themeProvider),
+              onChanged: (value) {
+                ref.watch(themeProvider.notifier).changeAppTheme(value);
+              }),
+          const SizedBox(
+            width: 10,
+          ),
+          DropdownButton(
+              icon: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(Icons.language),
+              ),
+              hint: const Text('Lang'),
+              items: const [
+                DropdownMenuItem(value: 'en', child: Text('en')),
+                DropdownMenuItem(value: 'ar', child: Text('ar'))
+              ],
+              onChanged: (langCode) {
+                ref.watch(langProvider.notifier).changeAppLang(langCode!);
+              })
+        ]),
+        body: SafeArea(
+          child: Container(
+              alignment: AlignmentDirectional.center,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: SingleChildScrollView(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
                     Container(
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
@@ -113,33 +89,28 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    BlocBuilder<LoginCubit, LoginState>(
-                        builder: (context, state) {
-                      return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20))),
-                          onPressed: () {
-                            currentFocus.unfocus();
-                            BlocProvider.of<LoginCubit>(context)
-                                .authenticateUser(
-                                    userNameTextFieldController.text,
-                                    userPasswordFieldController.text);
-                          },
-                          child: state is LoginLoading
-                              ? const SizedBox(
-                                  height: 15,
-                                  width: 15,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                  ))
-                              : const Text('Login'));
-                    })
-                  ]),
-            ),
-          )),
-        ),
-      ),
-    );
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        onPressed: () {
+                          currentFocus.unfocus();
+                          ref.read(loginProvider.notifier).authenticateUser(
+                              userNameTextFieldController.text,
+                              userPasswordFieldController.text);
+                        },
+                        child: ref.watch(loginProvider).when(
+                              data: (data) {
+                                return const Text('Login');
+                              },
+                              error: (error, stackTrace) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(error.toString())));
+                              },
+                              loading: () => CircularProgressIndicator(
+                                  color: Colors.purple),
+                            )),
+                  ]))),
+        ));
   }
 }
