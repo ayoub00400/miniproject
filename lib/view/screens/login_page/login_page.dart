@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mini_project_app/view/screens/home_page/home_page.dart';
 import 'package:mini_project_app/view/screens/login_page/login_provider.dart';
 
 import '../../../config/language/providers/lang_provider.dart';
@@ -18,7 +19,14 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     FocusScopeNode currentFocus = FocusScope.of(context);
-    ref.listen(loginProvider, (previous, next) {});
+    ref.listen(loginProvider, (previous, next) {
+      next.whenData((value) {
+        if (value == true) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => HomePage()));
+        }
+      });
+    });
     return Scaffold(
         appBar: AppBar(actions: [
           Switch(

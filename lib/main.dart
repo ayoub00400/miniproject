@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,11 +11,11 @@ import 'view/screens/login_page/login_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

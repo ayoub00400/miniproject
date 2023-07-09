@@ -1,11 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../utils/app_storage.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../utils/app_storage.dart';
 
 var themeProvider =
     StateNotifierProvider<ThemeProvider, bool>((ref) => ThemeProvider());

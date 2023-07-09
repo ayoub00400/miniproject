@@ -8,7 +8,7 @@ var langProvider =
 class LangProvider extends StateNotifier<String> {
   String defaultLang = 'ar';
 
-  LangProvider() : super("ar") {
+  LangProvider() : super('ar') {
     initLang();
   }
 
