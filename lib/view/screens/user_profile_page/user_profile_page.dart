@@ -18,12 +18,9 @@ class UserProfilePage extends ConsumerWidget {
         ),
         body: RefreshIndicator(
             onRefresh: () async {
-              print(ref.watch(userProvider.notifier).state);
-
               var newState =
-                  await ref.refresh(userFutureProvider.call(userData.userId));
+                  ref.refresh(userFutureProvider.call(userData.userId));
 
-              print(newState);
               ref
                   .watch(userProvider.notifier)
                   .update((state) => state = newState.value);
@@ -84,7 +81,7 @@ class UserProfilePage extends ConsumerWidget {
                           if (ref
                               .watch(userFutureProvider(userData.userId))
                               .isRefreshing) {
-                            return Center(
+                            return const Center(
                               child: CircularProgressIndicator(),
                             );
                           }
@@ -141,7 +138,7 @@ class UserProfilePage extends ConsumerWidget {
                         },
                         loading: () {
                           return ListView(
-                            children: [
+                            children: const [
                               SizedBox(
                                 height: 300,
                               ),
@@ -152,7 +149,7 @@ class UserProfilePage extends ConsumerWidget {
                         error: (error, stackTrace) {
                           return ListView(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 200,
                               ),
                               Center(
