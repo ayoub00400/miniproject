@@ -1,9 +1,8 @@
-import '../../utils/app_storage.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-var themeProvider =
-    StateNotifierProvider<ThemeProvider, bool>((ref) => ThemeProvider());
+import '../../utils/app_storage.dart';
+
+var themeProvider = StateNotifierProvider<ThemeProvider, bool>((ref) => ThemeProvider());
 
 class ThemeProvider extends StateNotifier<bool> {
   bool darkMode = false;

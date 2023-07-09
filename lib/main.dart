@@ -35,6 +35,6 @@ class MyApp extends ConsumerWidget {
           Locale('ar'), // arabic
         ],
         locale: Locale(ref.watch(langProvider)),
-        home: LoginPage());
+        home: LoginPage(),);
   }
 }

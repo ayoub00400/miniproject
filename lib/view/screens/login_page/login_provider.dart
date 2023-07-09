@@ -22,7 +22,7 @@ class LoginProvider extends AsyncNotifier<bool?> {
         } else {
           state = AsyncValue.error('wrong creadiantials', StackTrace.current);
         }
-      }));
+      }),);
     } catch (e) {
       state = AsyncValue.error('error happend', StackTrace.current);
     }

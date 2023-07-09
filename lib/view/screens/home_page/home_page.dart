@@ -21,16 +21,17 @@ class HomePage extends ConsumerWidget {
             child: SizedBox(
                 height: double.infinity,
                 child: RefreshIndicator(
-                  onRefresh: () async {
-                    var newState = await ref.refresh(homeFutureProvider.future);
+                  // onRefresh: () async {
+                  //   var newState = await ref.refresh(homeFutureProvider.future);
 
-                    ref
-                        .watch(homeStateProvider.notifier)
-                        .update((state) => state = newState);
-                  },
+                  //   ref
+                  //       .watch(homeStateProvider.notifier)
+                  //       .update((state) => state = newState);
+                  // },
+                  onRefresh: () => ref.refresh(homeFutureProvider.future),
                   child: users.when(
                     data: (data) {
-                      if (users.isRefreshing || data == null) {
+                      if (users.isRefreshing) {
                         return const Center(child: CircularProgressIndicator());
                       }
 
@@ -47,25 +48,23 @@ class HomePage extends ConsumerWidget {
                         );
                       } else {
                         return ListView.builder(
-                            itemCount: ref
-                                .watch(homeStateProvider.notifier)
-                                .state!
-                                .length,
+                            itemCount: data.length,
                             itemBuilder: (context, index) {
                               return UserCard(
                                 userData: data[index],
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => UserProfilePage(
-                                          userId: data[index].userId),
-                                      settings: RouteSettings(
-                                          arguments: data[index])));
+                                      builder: (context) => UserProfilePage(userId: data[index].userId),
+                                      settings: RouteSettings(arguments: data[index]),),);
                                 },
                               );
-                            });
+                            },);
                       }
                     },
                     error: (error, stackTrace) {
+                      if (users.isRefreshing) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
                       return ListView(
                         children: [
                           const SizedBox(
@@ -88,6 +87,6 @@ class HomePage extends ConsumerWidget {
                       );
                     },
                   ),
-                ))));
+                ),),),);
   }
 }

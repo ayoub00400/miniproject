@@ -2,8 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utils/app_storage.dart';
 
-var langProvider =
-    StateNotifierProvider<LangProvider, String>((ref) => LangProvider());
+var langProvider = StateNotifierProvider<LangProvider, String>((ref) => LangProvider());
 
 class LangProvider extends StateNotifier<String> {
   String defaultLang = 'ar';

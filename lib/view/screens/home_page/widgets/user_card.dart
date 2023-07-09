@@ -25,10 +25,10 @@ class UserCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   color: Colors.grey.withOpacity(.2),
-                  offset: const Offset(-1, 5))
+                  offset: const Offset(-1, 5),)
             ],
             color: Colors.blue.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(20)),
+            borderRadius: BorderRadius.circular(20),),
         margin: const EdgeInsets.all(8),
         height: 150,
         child: Row(children: [
@@ -49,11 +49,11 @@ class UserCard extends StatelessWidget {
               Row(
                 children: [
                   Text(app_localization.AppLocalizations.of(context)!
-                      .homeFirstNameTxt),
+                      .homeFirstNameTxt,),
                   Text(
                     userData.firstName,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w500),
+                        fontSize: 18, fontWeight: FontWeight.w500,),
                   ),
                 ],
               ),
@@ -61,11 +61,11 @@ class UserCard extends StatelessWidget {
               Row(
                 children: [
                   Text(app_localization.AppLocalizations.of(context)!
-                      .homeLastTxt),
+                      .homeLastTxt,),
                   Text(
                     userData.lastName,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w500),
+                        fontSize: 18, fontWeight: FontWeight.w500,),
                   ),
                 ],
               ),
@@ -73,17 +73,17 @@ class UserCard extends StatelessWidget {
               Row(
                 children: [
                   Text(app_localization.AppLocalizations.of(context)!
-                      .homePagePhoneNumber),
+                      .homePagePhoneNumber,),
                   Text(
                     userData.phoneNumber,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w500),
+                        fontSize: 18, fontWeight: FontWeight.w500,),
                   ),
                 ],
               ),
-            ]),
-          ))
-        ]),
+            ],),
+          ),)
+        ],),
       ),
     );
   }
