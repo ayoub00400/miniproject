@@ -83,7 +83,7 @@ class UserProfilePage extends ConsumerWidget {
                         data: (data) {
                           if (ref
                               .watch(userFutureProvider(userData.userId))
-                              .isLoading) {
+                              .isRefreshing) {
                             return Center(
                               child: CircularProgressIndicator(),
                             );

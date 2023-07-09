@@ -33,10 +33,7 @@ class HomePage extends ConsumerWidget {
                   },
                   child: users.when(
                     data: (data) {
-                      if (users.isLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                      if (data == null) {
+                      if (users.isRefreshing || data == null) {
                         return Center(child: CircularProgressIndicator());
                       }
 
