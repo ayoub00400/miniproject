@@ -7,11 +7,14 @@ import '../../../repositories/user/user_repo_imp.dart';
 
 User? newUserData;
 
-Future<User?> getUserById(int userId) async {
+FutureOr<User?> getUserById(int userId) async {
   try {
+    newUserData = null;
     newUserData = await UserRepository().getUserById(userId);
-    return newUserData;
-  } catch (e) {}
+  } catch (e) {
+    Exception();
+  }
+  return newUserData;
 }
 
 var userProvider = StateProvider<User?>((ref) => newUserData);

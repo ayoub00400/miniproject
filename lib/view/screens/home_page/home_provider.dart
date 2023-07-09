@@ -7,13 +7,15 @@ import '../../../repositories/user/user_repo_imp.dart';
 
 List<User>? users;
 
-Future<List<User>?> loadHomePageUsers() async {
+FutureOr<List<User>?> loadHomePageUsers() async {
   try {
     final userRepository = UserRepository();
 
     users = await userRepository.getAllUsers();
-    return users;
-  } catch (e) {}
+  } catch (e) {
+    Exception();
+  }
+  return users;
 }
 
 var homeStateProvider = StateProvider<List<User>?>((ref) => users);

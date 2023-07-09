@@ -8,7 +8,7 @@ import 'home_provider.dart';
 import 'widgets/user_card.dart';
 
 class HomePage extends ConsumerWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,8 +56,8 @@ class HomePage extends ConsumerWidget {
                                 userData: data[index],
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const UserProfilePage(),
+                                      builder: (context) => UserProfilePage(
+                                          userId: data[index].userId),
                                       settings: RouteSettings(
                                           arguments: data[index])));
                                 },

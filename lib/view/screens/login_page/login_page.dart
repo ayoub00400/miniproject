@@ -23,7 +23,7 @@ class LoginPage extends ConsumerWidget {
       next.whenData((value) {
         if (value == true) {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => HomePage()));
+              .push(MaterialPageRoute(builder: (_) => const HomePage()));
         }
       });
     });
