@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../home_page/home_page.dart';
-import 'login_provider.dart';
+import '../home_view/home.dart';
+import '../../../view_models/login_view_model.dart';
 
-import '../../../config/language/providers/lang_provider.dart';
-import '../../../config/theme/theme_provider.dart';
+import '../../view_models/lang_view_model.dart';
+import '../../view_models/theme_view_model.dart';
 import '../../../utils/extensions/app_localization_context.dart';
 import 'widgets/input_field.dart';
 
-class LoginPage extends ConsumerWidget {
+class LoginView extends ConsumerWidget {
   final TextEditingController userNameTextFieldController = TextEditingController(text: 'Ayoub004');
   final TextEditingController userPasswordFieldController = TextEditingController(text: 'Ayoub0041');
 
-  LoginPage({super.key});
+  LoginView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +20,7 @@ class LoginPage extends ConsumerWidget {
     ref.listen(loginProvider, (previous, next) {
       next.whenData((value) {
         if (value == true) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomePage()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HomeView()));
         }
       });
     });

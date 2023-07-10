@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'user_profile_provider.dart';
 
-class UserProfilePage extends ConsumerWidget {
+import '../../view_models/user_profile_view_model.dart';
+
+class UserProfileView extends ConsumerWidget {
   final int userId;
-  const UserProfilePage({super.key, required this.userId});
+  const UserProfileView({super.key, required this.userId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

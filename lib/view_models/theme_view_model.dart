@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../utils/app_storage.dart';
+import '../utils/app_storage.dart';
 
-var themeProvider = StateNotifierProvider<ThemeProvider, bool>((ref) => ThemeProvider());
+var themeProvider = StateNotifierProvider<ThemeViewModel, bool>((ref) => ThemeViewModel());
 
-class ThemeProvider extends StateNotifier<bool> {
+class ThemeViewModel extends StateNotifier<bool> {
   bool darkMode = false;
 
-  ThemeProvider() : super(false) {
+  ThemeViewModel() : super(false) {
     initTheme();
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../utils/app_storage.dart';
+import '../utils/app_storage.dart';
 
 var langProvider = StateNotifierProvider<LangProvider, String>((ref) => LangProvider());
 
