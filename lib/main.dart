@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'utils/app_storage.dart';
-import 'view/login_view/login.dart';
+import 'view/login/login_view.dart';
 import 'view_models/lang_view_model.dart';
 import 'view_models/theme_view_model.dart';
 
